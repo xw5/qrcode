@@ -1,0 +1,86 @@
+.popup-wrap{
+  width:375px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+.popup-title{
+  text-align:center;
+  font-weight:normal;
+  font-size:20rpx;
+  line-height:24rpx;
+  color:#333;
+}
+.popup-instruction{
+  width:100%;
+  padding:0 20px;
+  box-sizing: border-box;
+  font-size:18rpx;
+  margin-top:30px;
+  color:#999;
+}
+.popup-instruction__title{
+  text-align:center;
+  margin-bottom:10px;
+  font-weight:bold;
+  color:#333;
+}
+.popup-instruction__item{
+  margin:0;
+  color:#919191;
+}
+.qrcode{
+  width:200px;
+  height:200px;
+  margin-top:20px;
+  background-color:rgba(0,0,0,0.3);
+}
+.qrcode-con{
+  width:330px;
+  height:72px;
+  border-radius:3px;
+  overflow:auto;
+  margin-top:20px;
+  padding:5px 8px;
+  border:1px solid #bbb;
+  resize:none;
+}
+.qrcode-create__btn{
+  width:140px;
+  height:35px;
+  cursor: pointer;
+  margin-top:10px;
+  text-align:center;
+  border:1px solid #F4C47C;
+  text-decoration:none;
+  background:#999 linear-gradient(45deg,rgba(0,0,0,0),rgba(0,128,0,0.5));
+  transition: background-color 0.4s;
+  color:#fff;
+}
+.qrcode-create__btn:hover{
+  background-color:#F4C47C;
+}
+.qrcode-create__website{
+  width:100%;
+  padding:0 20px;
+  box-sizing: border-box;
+  text-align:center;
+}
+.qrcode-website__title{
+  font-weight:bold;
+  margin-bottom:10px;
+  color:#333;
+}
+.qrcode-website__link{
+  text-align:left;
+}
+.qrcode-website__item{
+  display:inline-block;
+  line-height:22px;
+  padding: 0 5px;
+  cursor: pointer;
+}
+.qrcode-website__item:hover{
+  color:green;
+  text-decoration: underline;
+}
