@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "qrcode",
+  "name": "QRCodeAssistant",
   "version": "1.0.0",
   "description": "快速二维码生成",
   "icons":
