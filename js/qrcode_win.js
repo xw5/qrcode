@@ -50,14 +50,16 @@ window.onload = function () {
   createQrcodeWinHtml();
 }
 
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
-  console.log(request);
-  if (request.cmd === "qrcode") {
-    if (request.value) {
-      createQrcode (request.value);
-      sendResponse (request.value);
-    } else {
-      alert('请选择你想要生成二维码的文本！');
-    }
+chrome.runtime.onConnect.addListener(function(port){
+  if (port.name === "createQrcode") {
+    port.onMessage.addListener(function(response) {
+      if (response.cmd === "qrcode") {
+        if (response.value) {
+          createQrcode(response.value);
+        } else {
+          alert('请选择你想要生成二维码的文本！');
+        }
+      }
+    });
   }
 });
