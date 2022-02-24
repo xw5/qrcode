@@ -83,14 +83,8 @@ function notification(tips) {
 
   // // 显示通知
   // notification.show();
-
-  chrome.notifications.create(
-    'countExceed',
-    {
-      type: 'basic',
-      iconUrl: 'icon48.png',
-      title: '温馨提示',
-      message: 'tips'
-    }
-  )
+  new Notification('温馨提示', {
+    icon: 'icon48.png',
+    body: tips
+  })
 }
