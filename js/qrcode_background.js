@@ -17,7 +17,7 @@
 
   // 发送消息
   function sendMessageToContentScript(message, tab, callback) {
-    port = chrome.tabs.connect(tab.id,{name: "createQrcode"}); 
+    let port = chrome.tabs.connect(tab.id,{name: "createQrcode"}); 
     port.postMessage(message);
   }
 

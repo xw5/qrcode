@@ -28,6 +28,7 @@
   "permissions":
   [
     "contextMenus",
+    "notifications",
     "tabs"
   ],
   "host_permissions":[

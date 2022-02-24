@@ -1,3 +1,4 @@
+const MAX_QRCODE_COUNT = 256;
 let qrcodeCodexw = null;
 
 // 生成弹窗二维码html
@@ -22,11 +23,11 @@ function createQrcode (str) {
   if (!qrcodeCodexw) {
     qrcodeCodexw = new QRCode(document.getElementById("xwQrcodeCon555"), {
       text: str,
-      width: 200,
-      height: 200,
+      width: 256,
+      height: 256,
       colorDark : "#000000",
       colorLight : "#ffffff",
-      correctLevel : QRCode.CorrectLevel.H
+      correctLevel : QRCode.CorrectLevel.Q
     });
   } else {
     qrcodeCodexw.makeCode(str);
@@ -54,12 +55,42 @@ chrome.runtime.onConnect.addListener(function(port){
   if (port.name === "createQrcode") {
     port.onMessage.addListener(function(response) {
       if (response.cmd === "qrcode") {
-        if (response.value) {
-          createQrcode(response.value);
+        let tips = response.value;
+        if (tips) {
+          if (tips.length > MAX_QRCODE_COUNT) {
+            notification('过长的文本只会截取前256个字符生成二维码！');
+          }
+          createQrcode(tips.slice(0, MAX_QRCODE_COUNT));
         } else {
-          alert('请选择你想要生成二维码的文本！');
+          notification('请选择你想要生成二维码的文本！');
         }
       }
     });
   }
 });
+
+/**
+ * 消息通知
+ * @param {String} tips 
+ */
+function notification(tips) {
+  // // 创建一个简单的文字通知：
+  // var notification = webkitNotifications.createNotification(
+  //   'icon48.png',  // icon url - can be relative
+  //   '温馨提示',  // notification title
+  //   tips  // notification body text
+  // );
+
+  // // 显示通知
+  // notification.show();
+
+  chrome.notifications.create(
+    'countExceed',
+    {
+      type: 'basic',
+      iconUrl: 'icon48.png',
+      title: '温馨提示',
+      message: 'tips'
+    }
+  )
+}
