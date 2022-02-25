@@ -55,12 +55,12 @@ chrome.runtime.onConnect.addListener(function(port){
   if (port.name === "createQrcode") {
     port.onMessage.addListener(function(response) {
       if (response.cmd === "qrcode") {
-        let tips = response.value;
-        if (tips) {
-          if (tips.length > MAX_QRCODE_COUNT) {
+        let content = response.value;
+        if (content) {
+          if (content.length > MAX_QRCODE_COUNT) {
             notification('过长的文本只会截取前256个字符生成二维码！');
           }
-          createQrcode(tips.slice(0, MAX_QRCODE_COUNT));
+          createQrcode(content.slice(0, MAX_QRCODE_COUNT));
         } else {
           notification('请选择你想要生成二维码的文本！');
         }
@@ -73,18 +73,26 @@ chrome.runtime.onConnect.addListener(function(port){
  * 消息通知
  * @param {String} tips 
  */
-function notification(tips) {
-  // // 创建一个简单的文字通知：
-  // var notification = webkitNotifications.createNotification(
-  //   'icon48.png',  // icon url - can be relative
-  //   '温馨提示',  // notification title
-  //   tips  // notification body text
-  // );
-
-  // // 显示通知
-  // notification.show();
-  new Notification('温馨提示', {
-    icon: 'icon48.png',
-    body: tips
-  })
+let tipsWrap = null;
+/**
+ * 显示消息提示
+ * @param {String} tips 
+ * @param {Number} duration 
+ * @returns 
+ */
+function notification(tips, duration = 3) {
+  tipsWrap = document.getElementsByClassName('xw_qrcode_tips_xw555');
+  if(tipsWrap && tipsWrap.length > 0) {
+    tipsWrap[0].innerHTML = tips;
+    tipsWrap[0].style.display = 'block';
+    return;
+  } else {
+    tipsWrap = document.createElement('div');
+    tipsWrap.className = 'xw_qrcode_tips_xw555';
+    tipsWrap.innerHTML = tips;
+    document.body.appendChild(tipsWrap);
+  }
+  setTimeout(() => {
+    tipsWrap.style.display = 'none';
+  }, duration * 1000);
 }

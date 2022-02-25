@@ -30,9 +30,9 @@
   color:#919191;
 }
 .qrcode{
-  width:200px;
-  height:200px;
-  margin-top:20px;
+  width:256px;
+  height:256px;
+  margin-top:10px;
   background-color:rgba(0,0,0,0.3);
 }
 .qrcode-con{
@@ -40,7 +40,7 @@
   height:72px;
   border-radius:3px;
   overflow:auto;
-  margin-top:20px;
+  margin-top:10px;
   padding:5px 8px;
   border:1px solid #bbb;
   resize:none;
@@ -62,7 +62,7 @@
 }
 .qrcode-create__website{
   width:100%;
-  padding:0 20px;
+  padding:0 15px;
   box-sizing: border-box;
   text-align:center;
 }

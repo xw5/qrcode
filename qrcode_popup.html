@@ -10,7 +10,15 @@
 <body>
   <div class="popup-wrap">
     <div class="qrcode" id="qrcodeMain"></div>
-    <textarea autocomplete="true" placeholder="输入要转换成二维码的内容" class="qrcode-con" id="qrcodeCon" cols="24" rows="4"></textarea>
+    <textarea 
+      autocomplete="true" 
+      placeholder="输入要转换成二维码的内容,最长256个字符" 
+      class="qrcode-con" 
+      id="qrcodeCon" 
+      cols="24" 
+      rows="4"
+      maxlength="256"
+    ></textarea>
     <button id="createBtn" class="qrcode-create__btn">生成二维码</button>
     <dl class="popup-instruction">
       <dt class="popup-instruction__title">二维码生成器</dt>

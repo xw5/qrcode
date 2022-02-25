@@ -1,13 +1,14 @@
-  chrome.contextMenus.create({
-    type: 'normal',
-    title: '生成二维码',
-    id: 'qrcodeCm',
-    contexts: ['selection']
-  });
-
-  chrome.contextMenus.onClicked.addListener(function(info, tab) {
-    createQrcode(info, tab);
-  });
+  chrome.runtime.onInstalled.addListener(() => {
+    chrome.contextMenus.create({
+      type: 'normal',
+      title: '生成二维码',
+      id: 'qrcodeCm',
+      contexts: ['selection']
+    });
+    chrome.contextMenus.onClicked.addListener(function(info, tab) {
+      createQrcode(info, tab);
+    });
+  })
 
   function createQrcode(info, tab) {
     sendMessageToContentScript({cmd:'qrcode', value:info.selectionText}, tab, function(response) {

@@ -33,8 +33,8 @@ function createQrcode (str) {
   if (!qrcodeMain) {
     qrcodeMain = new QRCode($("#qrcodeMain")[0], {
       text: str,
-      width: 200,
-      height: 200,
+      width: 256,
+      height: 256,
       colorDark : "#000000",
       colorLight : "#ffffff",
       correctLevel : QRCode.CorrectLevel.H
